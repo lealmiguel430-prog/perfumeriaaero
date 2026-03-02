@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Column 1: Brand */}
           <div className="lg:pr-8">
             <div className="mb-6 flex flex-col items-start">
-              <img src="/logo.png" alt="AERO PERFUMES" className="h-20 w-auto object-contain mb-2" />
+              <img src="./logo.png" alt="AERO PERFUMES" className="h-24 md:h-32 w-auto object-contain mb-2" />
             </div>
             <p className="text-gray-500 text-sm leading-relaxed mb-6">
               Ofrecemos una exclusiva selección de aromas para cualquier evento, desde perfumes frescos para el día a día hasta elegantes perfumes para ocasiones especiales.
@@ -46,33 +46,33 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-bold uppercase tracking-widest text-black mb-6">Contacto Digital</h4>
             <div className="space-y-4">
-              <a href="https://wa.me/573159272615" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-lg border border-gray-100 hover:shadow-md transition-shadow group bg-white">
-                <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-500 group-hover:bg-green-500 group-hover:text-white transition-colors">
-                  <Phone size={20} />
+              <a href="https://wa.me/573159272615" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-lg border border-gray-100 hover:border-[#25D366]/30 hover:shadow-[0_4px_20px_rgba(37,211,102,0.15)] transition-all duration-300 group bg-white">
+                <div className="w-12 h-12 rounded-full bg-[#25D366]/10 flex items-center justify-center text-[#25D366] group-hover:bg-[#25D366] group-hover:text-white transition-colors duration-300">
+                  <Phone size={22} className="group-hover:animate-pulse" />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 uppercase font-bold">WhatsApp</p>
-                  <p className="text-sm font-bold text-gray-800">+57 315 927 2615</p>
+                  <p className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">WhatsApp</p>
+                  <p className="text-sm font-bold text-gray-800 group-hover:text-[#25D366] transition-colors">+57 315 927 2615</p>
                 </div>
               </a>
 
-              <a href="https://www.instagram.com/perfumeria_aero" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-lg border border-gray-100 hover:shadow-md transition-shadow group bg-white">
-                <div className="w-10 h-10 rounded-full bg-pink-50 flex items-center justify-center text-pink-500 group-hover:bg-pink-500 group-hover:text-white transition-colors">
-                  <Instagram size={20} />
+              <a href="https://www.instagram.com/perfumeria_aero" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-lg border border-gray-100 hover:border-[#E1306C]/30 hover:shadow-[0_4px_20px_rgba(225,48,108,0.15)] transition-all duration-300 group bg-white">
+                <div className="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-[#E1306C] group-hover:bg-gradient-to-tr group-hover:from-[#F58529] group-hover:via-[#DD2A7B] group-hover:to-[#8134AF] group-hover:text-white transition-all duration-300">
+                  <Instagram size={22} />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 uppercase font-bold">Instagram</p>
-                  <p className="text-sm font-bold text-gray-800">@perfumeria_aero</p>
+                  <p className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Instagram</p>
+                  <p className="text-sm font-bold text-gray-800 group-hover:text-[#E1306C] transition-colors">@perfumeria_aero</p>
                 </div>
               </a>
 
-              <a href="mailto:info@perfumeriaaero.com" className="flex items-center gap-4 p-4 rounded-lg border border-gray-100 hover:shadow-md transition-shadow group bg-white">
-                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors">
-                  <Mail size={20} />
+              <a href="mailto:info@perfumeriaaero.com" className="flex items-center gap-4 p-4 rounded-lg border border-gray-100 hover:border-blue-500/30 hover:shadow-[0_4px_20px_rgba(59,130,246,0.15)] transition-all duration-300 group bg-white">
+                <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
+                  <Mail size={22} />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 uppercase font-bold">Email</p>
-                  <p className="text-sm font-bold text-gray-800">info@perfumeriaaero.com</p>
+                  <p className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Email</p>
+                  <p className="text-sm font-bold text-gray-800 group-hover:text-blue-500 transition-colors">info@perfumeriaaero.com</p>
                 </div>
               </a>
             </div>
@@ -82,21 +82,21 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-bold uppercase tracking-widest text-black mb-6">Visítanos</h4>
             <div className="space-y-4">
-              <div className="flex gap-4 p-4 rounded-lg bg-gray-50">
-                <Clock className="text-gold flex-shrink-0 mt-1" size={20} />
+              <div className="flex gap-4 p-4 rounded-lg bg-gray-50/50 border border-transparent hover:border-gold/20 transition-colors">
+                <Clock className="text-gold flex-shrink-0 mt-1" size={22} />
                 <div>
-                  <p className="text-xs font-bold text-gray-900 mb-1">HORARIO DE ATENCIÓN</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">HORARIO DE ATENCIÓN</p>
                   <p className="text-sm text-gray-600">Domingo - Domingo</p>
-                  <p className="text-sm font-bold text-gray-800">9:00 am a 8:00 pm</p>
+                  <p className="text-sm font-bold text-gray-900">9:00 am a 8:00 pm</p>
                 </div>
               </div>
 
-              <div className="flex gap-4 p-4 rounded-lg bg-gray-50">
-                <MapPin className="text-gold flex-shrink-0 mt-1" size={20} />
+              <div className="flex gap-4 p-4 rounded-lg bg-gray-50/50 border border-transparent hover:border-gold/20 transition-colors">
+                <MapPin className="text-gold flex-shrink-0 mt-1" size={22} />
                 <div>
-                  <p className="text-xs font-bold text-gray-900 mb-1">UBICACIÓN</p>
-                  <p className="text-sm text-gray-600">Cúcuta, Colombia</p>
-                  <p className="text-sm font-bold text-gray-800">CC Jardín Plaza Local 96</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">UBICACIÓN</p>
+                  <p className="text-sm text-gray-600">Cúcuta, Norte de Santander</p>
+                  <p className="text-sm font-bold text-gray-900">Calle 2 # 11e-92 Quinta Oriental</p>
                 </div>
               </div>
             </div>

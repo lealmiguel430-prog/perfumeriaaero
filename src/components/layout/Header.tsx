@@ -46,22 +46,13 @@ const Header = () => {
 
   return (
     <header className="bg-[#121212] border-b border-gold/20 sticky top-0 z-50 shadow-lg shadow-black/50">
-      {/* Top Bar */}
-      <div className="bg-black text-white text-[10px] py-1 text-center border-b border-white/10 overflow-hidden">
-        <div className="flex justify-between px-4 container-custom">
-           <span className="tracking-widest uppercase font-bold">ENVÍO GRATIS A TODA COLOMBIA</span>
-           <span className="tracking-widest uppercase font-bold hidden sm:inline">ENVÍO GRATIS A TODA COLOMBIA</span>
-           <span className="tracking-widest uppercase font-bold hidden md:inline">ENVÍO GRATIS A TODA COLOMBIA</span>
-        </div>
-      </div>
-
       <div className="container-custom py-6">
         <div className="flex items-center justify-between">
           
           {/* Logo - Left Aligned */}
           <Link to="/" className="flex-shrink-0 flex flex-col items-center group">
              <div className="relative">
-                <img src="/logo.png" alt="AERO PERFUMES" className="h-16 w-auto object-contain hover:scale-105 transition-transform duration-300" />
+                <img src="./logo.png" alt="AERO PERFUMES" className="h-16 md:h-20 w-auto object-contain hover:scale-105 transition-transform duration-300" />
              </div>
           </Link>
 
@@ -136,43 +127,52 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <nav className="xl:hidden mt-4 pb-4 border-t border-gold/10 pt-4 flex flex-col space-y-2 bg-[#121212]">
-            {navLinks.map((link) => (
-              <div key={link.name}>
-                <div className="flex items-center justify-between px-4 py-2">
-                  <Link 
-                    to={link.path} 
-                    className="text-sm font-bold text-cream hover:text-gold uppercase tracking-widest" 
-                    onClick={() => !link.subItems && setIsMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                  {link.subItems && (
-                    <button onClick={() => toggleSubMenu(link.name)} className="text-gold p-1">
-                      <ChevronDown size={16} className={`transform transition-transform ${openSubMenu === link.name ? 'rotate-180' : ''}`} />
-                    </button>
+        <div className={`xl:hidden fixed inset-0 z-40 bg-black/95 backdrop-blur-sm transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+          <div className={`flex flex-col h-full pt-24 px-6 transition-transform duration-300 ${isMenuOpen ? 'translate-y-0' : '-translate-y-10'}`}>
+            <button 
+              className="absolute top-6 right-6 text-gold p-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <X size={32} />
+            </button>
+            
+            <nav className="flex flex-col space-y-6">
+              {navLinks.map((link) => (
+                <div key={link.name} className="border-b border-white/10 pb-4">
+                  <div className="flex items-center justify-between">
+                    <Link 
+                      to={link.path} 
+                      className="text-xl font-serif text-cream hover:text-gold uppercase tracking-widest" 
+                      onClick={() => !link.subItems && setIsMenuOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                    {link.subItems && (
+                      <button onClick={() => toggleSubMenu(link.name)} className="text-gold p-2">
+                        <ChevronDown size={20} className={`transform transition-transform ${openSubMenu === link.name ? 'rotate-180' : ''}`} />
+                      </button>
+                    )}
+                  </div>
+                  
+                  {link.subItems && openSubMenu === link.name && (
+                    <div className="mt-4 pl-4 space-y-3 border-l border-gold/30">
+                      {link.subItems.map((subItem) => (
+                        <Link 
+                          key={subItem.name} 
+                          to={subItem.path} 
+                          className="block text-sm text-gray-400 hover:text-gold py-1"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
                   )}
                 </div>
-                
-                {link.subItems && openSubMenu === link.name && (
-                  <div className="bg-[#1A2220] py-2 px-6 space-y-2">
-                    {link.subItems.map((subItem) => (
-                      <Link 
-                        key={subItem.name} 
-                        to={subItem.path} 
-                        className="block text-sm text-gray-400 hover:text-gold py-1"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {subItem.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
-        )}
+              ))}
+            </nav>
+          </div>
+        </div>
       </div>
     </header>
   );

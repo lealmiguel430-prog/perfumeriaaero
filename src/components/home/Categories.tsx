@@ -39,24 +39,35 @@ const Categories = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto"></div>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((category) => (
             <Link 
               key={category.id} 
               to={`/tienda?category=${category.slug}`}
-              className="group flex flex-col items-center"
+              className="group relative h-96 overflow-hidden border border-white/10 hover:border-gold/50 transition-colors duration-500"
             >
-              <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-gold/30 mb-6 shadow-2xl shadow-black/50 transition-all duration-500 group-hover:border-gold group-hover:shadow-gold/20">
-                <div className="absolute inset-0 bg-gold/10 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              {/* Image Background */}
+              <div className="absolute inset-0">
                 <img 
                   src={category.image} 
                   alt={category.name} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter brightness-90 group-hover:brightness-100"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter brightness-[0.7] group-hover:brightness-90 grayscale group-hover:grayscale-0"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-cream uppercase tracking-[0.2em] group-hover:text-gold transition-colors">
-                {category.name}
-              </h3>
+
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col justify-end p-8">
+                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <h3 className="text-2xl font-serif text-white mb-2 group-hover:text-gold transition-colors">
+                    {category.name}
+                  </h3>
+                  <div className="w-12 h-[1px] bg-gold mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100"></div>
+                  <span className="text-xs uppercase tracking-widest text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200 flex items-center gap-2">
+                    Explorar Colección <span className="text-gold">→</span>
+                  </span>
+                </div>
+              </div>
             </Link>
           ))}
         </div>

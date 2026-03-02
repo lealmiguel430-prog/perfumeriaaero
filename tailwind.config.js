@@ -25,7 +25,7 @@ export default {
       },
       fontFamily: {
         serif: ['Playfair Display', 'serif'],
-        sans: ['Open Sans', 'sans-serif'],
+        sans: ['Montserrat', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-gold': 'linear-gradient(to right, #F2D27A, #D4AF37, #A8792A)',

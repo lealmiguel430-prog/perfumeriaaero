@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,9 +6,13 @@
 
 @layer base {
   body {
-    @apply font-sans;
-    background-color: #0B0B0B;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #050505;
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(168, 121, 42, 0.05) 0%, transparent 25%);
     color: #F5E6D3;
+    overflow-x: hidden;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -17,17 +21,61 @@
   }
 }
 
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  }
+  
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
 @layer components {
   .btn-primary {
-    @apply px-6 py-2 rounded-sm transition-all hover:brightness-110 font-bold uppercase tracking-widest text-sm shadow-md hover:shadow-gold/20 border border-gold-light/20;
-    background-image: linear-gradient(to right, #F2D27A, #D4AF37, #A8792A);
-    color: #0B0B0B;
+    @apply px-8 py-3 rounded-none transition-all duration-500 font-medium uppercase tracking-[0.2em] text-xs relative overflow-hidden z-10;
+    background: transparent;
+    color: #D4AF37;
+    border: 1px solid #D4AF37;
+  }
+
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-gold transform scale-x-0 transition-transform duration-500 origin-left -z-10;
+  }
+
+  .btn-primary:hover::before {
+    @apply scale-x-100;
+  }
+
+  .btn-primary:hover {
+    @apply text-black shadow-[0_0_20px_rgba(212,175,55,0.6)];
   }
   
   .btn-outline {
-    @apply px-6 py-2 border border-gold text-gold rounded-sm transition-all hover:bg-gold/10 hover:text-gold-light font-bold uppercase tracking-widest text-sm;
+    @apply px-8 py-3 border border-white/20 text-gray-300 rounded-none transition-all duration-300 hover:border-gold hover:text-gold font-medium uppercase tracking-[0.2em] text-xs backdrop-blur-sm;
   }
-  
+
+  .btn-outline:hover {
+    @apply shadow-[0_0_15px_rgba(212,175,55,0.2)] bg-white/5;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@layer components {
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
