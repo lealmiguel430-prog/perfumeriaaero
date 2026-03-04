@@ -45,34 +45,34 @@ const Footer = () => {
           {/* Column 3: Digital Contact */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-widest text-black mb-6">Contacto Digital</h4>
-            <div className="space-y-4">
-              <a href="https://wa.me/573159272615" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-lg border border-gray-100 hover:border-[#25D366]/30 hover:shadow-[0_4px_20px_rgba(37,211,102,0.15)] transition-all duration-300 group bg-white">
-                <div className="w-12 h-12 rounded-full bg-[#25D366]/10 flex items-center justify-center text-[#25D366] group-hover:bg-[#25D366] group-hover:text-white transition-colors duration-300">
-                  <Phone size={22} className="group-hover:animate-pulse" />
+            <div className="space-y-3">
+              <a href="https://wa.me/573159272615" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg border border-gray-100 hover:border-[#25D366] hover:shadow-md transition-all duration-300 group bg-white">
+                <div className="w-10 h-10 rounded-full bg-[#25D366]/10 flex items-center justify-center text-[#25D366] group-hover:bg-[#25D366] group-hover:text-white transition-colors">
+                  <Phone size={18} />
                 </div>
                 <div>
                   <p className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">WhatsApp</p>
-                  <p className="text-sm font-bold text-gray-800 group-hover:text-[#25D366] transition-colors">+57 315 927 2615</p>
+                  <p className="text-xs font-bold text-gray-800 group-hover:text-[#25D366] transition-colors">+57 315 927 2615</p>
                 </div>
               </a>
 
-              <a href="https://www.instagram.com/perfumeria_aero" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-lg border border-gray-100 hover:border-[#E1306C]/30 hover:shadow-[0_4px_20px_rgba(225,48,108,0.15)] transition-all duration-300 group bg-white">
-                <div className="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-[#E1306C] group-hover:bg-gradient-to-tr group-hover:from-[#F58529] group-hover:via-[#DD2A7B] group-hover:to-[#8134AF] group-hover:text-white transition-all duration-300">
-                  <Instagram size={22} />
+              <a href="https://www.instagram.com/perfumeria_aero" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg border border-gray-100 hover:border-[#E1306C] hover:shadow-md transition-all duration-300 group bg-white">
+                <div className="w-10 h-10 rounded-full bg-pink-50 flex items-center justify-center text-[#E1306C] group-hover:bg-[#E1306C] group-hover:text-white transition-colors">
+                  <Instagram size={18} />
                 </div>
                 <div>
                   <p className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Instagram</p>
-                  <p className="text-sm font-bold text-gray-800 group-hover:text-[#E1306C] transition-colors">@perfumeria_aero</p>
+                  <p className="text-xs font-bold text-gray-800 group-hover:text-[#E1306C] transition-colors">@perfumeria_aero</p>
                 </div>
               </a>
 
-              <a href="mailto:info@perfumeriaaero.com" className="flex items-center gap-4 p-4 rounded-lg border border-gray-100 hover:border-blue-500/30 hover:shadow-[0_4px_20px_rgba(59,130,246,0.15)] transition-all duration-300 group bg-white">
-                <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
-                  <Mail size={22} />
+              <a href="mailto:info@perfumeriaaero.com" className="flex items-center gap-3 p-3 rounded-lg border border-gray-100 hover:border-blue-500 hover:shadow-md transition-all duration-300 group bg-white">
+                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                  <Mail size={18} />
                 </div>
                 <div>
                   <p className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Email</p>
-                  <p className="text-sm font-bold text-gray-800 group-hover:text-blue-500 transition-colors">info@perfumeriaaero.com</p>
+                  <p className="text-xs font-bold text-gray-800 group-hover:text-blue-500 transition-colors">info@perfumeriaaero.com</p>
                 </div>
               </a>
             </div>
@@ -82,21 +82,25 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-bold uppercase tracking-widest text-black mb-6">Visítanos</h4>
             <div className="space-y-4">
-              <div className="flex gap-4 p-4 rounded-lg bg-gray-50/50 border border-transparent hover:border-gold/20 transition-colors">
-                <Clock className="text-gold flex-shrink-0 mt-1" size={22} />
+              <div className="flex items-start gap-4 p-4 rounded-lg border border-gray-100 hover:border-gold/30 hover:shadow-sm transition-all duration-300 bg-white group">
+                <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-black transition-colors">
+                  <Clock size={20} />
+                </div>
                 <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">HORARIO DE ATENCIÓN</p>
-                  <p className="text-sm text-gray-600">Domingo - Domingo</p>
-                  <p className="text-sm font-bold text-gray-900">9:00 am a 8:00 pm</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Horario</p>
+                  <p className="text-sm font-medium text-gray-900">Domingo - Domingo</p>
+                  <p className="text-xs text-gray-500">9:00 am a 8:00 pm</p>
                 </div>
               </div>
 
-              <div className="flex gap-4 p-4 rounded-lg bg-gray-50/50 border border-transparent hover:border-gold/20 transition-colors">
-                <MapPin className="text-gold flex-shrink-0 mt-1" size={22} />
+              <div className="flex items-start gap-4 p-4 rounded-lg border border-gray-100 hover:border-gold/30 hover:shadow-sm transition-all duration-300 bg-white group">
+                <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-black transition-colors">
+                  <MapPin size={20} />
+                </div>
                 <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">UBICACIÓN</p>
-                  <p className="text-sm text-gray-600">Cúcuta, Norte de Santander</p>
-                  <p className="text-sm font-bold text-gray-900">Calle 2 # 11e-92 Quinta Oriental</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Ubicación</p>
+                  <p className="text-sm font-medium text-gray-900">Cúcuta, N. de Santander</p>
+                  <p className="text-xs text-gray-500">Calle 2 # 11e-92 Q. Oriental</p>
                 </div>
               </div>
             </div>
@@ -105,19 +109,10 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-xs text-gray-500 mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Perfumeria Aero. Todos los derechos reservados.
+        <div className="border-t border-gray-100 pt-8 flex justify-center">
+          <p className="text-xs text-gray-400 font-medium tracking-wide">
+            &copy; {new Date().getFullYear()} Perfumería Aero. Todos los derechos reservados.
           </p>
-          <div className="flex items-center gap-4">
-            <span className="text-xs text-gray-400 font-bold uppercase">Pagos Seguros con:</span>
-            <div className="flex gap-2">
-               {/* Payment Icons */}
-               <div className="h-6 px-2 bg-gray-100 rounded text-[10px] flex items-center font-bold text-blue-600">VISA</div>
-               <div className="h-6 px-2 bg-gray-100 rounded text-[10px] flex items-center font-bold text-red-500">MC</div>
-               <div className="h-6 px-2 bg-gray-100 rounded text-[10px] flex items-center font-bold text-green-600">ADDI</div>
-            </div>
-          </div>
         </div>
       </div>
     </footer>
