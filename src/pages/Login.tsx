@@ -21,13 +21,26 @@ const Login = () => {
 
     // Simulate API call
     setTimeout(() => {
-      login({
-        id: '1',
+      // Determine role based on email
+      const isAdmin = email === 'admin@aero.com';
+      const role = isAdmin ? 'admin' : 'user';
+      
+      const userData = {
+        id: isAdmin ? 'admin-1' : 'user-' + Date.now(),
         email: email,
         name: email.split('@')[0],
-      });
+        role: role as 'admin' | 'user'
+      };
+      
+      login(userData);
       setIsLoading(false);
-      navigate(redirectPath);
+      
+      // Redirect admins to dashboard, users to home or intended page
+      if (isAdmin) {
+        navigate('/admin/dashboard');
+      } else {
+        navigate(redirectPath === '/' ? '/' : redirectPath);
+      }
     }, 1500);
   };
 
