@@ -53,7 +53,7 @@ const AdminLayout = () => {
         <div className="h-full flex flex-col">
           {/* Logo */}
           <div className="p-6 border-b border-white/5 flex flex-col items-center">
-            <img src="/logo.png" alt="Aero Perfumería" className="h-16 w-auto mb-2" />
+            <img src="./logo.png" alt="Aero Perfumería" className="h-16 w-auto mb-2" />
             <span className="text-gold font-serif font-bold tracking-[0.2em] text-xs">ADMINISTRACIÓN</span>
           </div>
 
