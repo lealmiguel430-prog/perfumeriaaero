@@ -25,6 +25,10 @@ const AdminLayout = () => {
     navigate('/');
   };
 
+  const handleExitAdmin = () => {
+    navigate('/');
+  };
+
   const menuItems = [
     { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Productos', path: '/admin/products', icon: Package },
