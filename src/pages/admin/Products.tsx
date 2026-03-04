@@ -57,7 +57,7 @@ const AdminProducts = () => {
         category: 'Mujer',
         price: 0,
         description: '',
-        image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1000&auto=format&fit=crop',
+        image: './images/products/product-1.jpg',
         stock: 10,
         status: 'active',
         discount: 0
