@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface User {
   id: string;
@@ -16,11 +17,18 @@ interface AuthState {
   setMaintenanceMode: (enabled: boolean) => void;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
-  isAuthenticated: false,
-  maintenanceMode: false,
-  login: (user) => set({ user, isAuthenticated: true }),
-  logout: () => set({ user: null, isAuthenticated: false }),
-  setMaintenanceMode: (enabled) => set({ maintenanceMode: enabled }),
-}));
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
+      user: null,
+      isAuthenticated: false,
+      maintenanceMode: false,
+      login: (user) => set({ user, isAuthenticated: true }),
+      logout: () => set({ user: null, isAuthenticated: false }),
+      setMaintenanceMode: (enabled) => set({ maintenanceMode: enabled }),
+    }),
+    {
+      name: 'auth-storage', // name of the item in the storage (must be unique)
+    }
+  )
+);
