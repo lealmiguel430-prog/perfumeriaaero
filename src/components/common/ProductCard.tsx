@@ -20,7 +20,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const displayOriginalPrice = hasDiscount ? Math.round(price / (1 - discountPercent / 100)) : price;
 
   return (
-    <div className="group relative bg-[#121212] border border-white/5 hover:border-gold/30 transition-all duration-500 flex flex-col h-full hover:shadow-[0_0_30px_rgba(212,175,55,0.1)] hover:-translate-y-1">
+    <div className="group relative card-surface hover-elevate flex flex-col h-full animate-fade-in-up">
       
       {/* Image Container */}
       <div className="aspect-[3/4] overflow-hidden relative">
@@ -101,7 +101,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
            {/* Mobile Add to Cart Button */}
            <button 
              onClick={() => addToCart(product)}
-             className="w-full border border-white/20 text-white font-bold uppercase tracking-widest text-[10px] py-3 lg:hidden hover:bg-white hover:text-black transition-colors flex items-center justify-center gap-2"
+             className="w-full btn-outline lg:hidden flex items-center justify-center gap-2"
            >
              <ShoppingBag size={14} />
              Agregar
