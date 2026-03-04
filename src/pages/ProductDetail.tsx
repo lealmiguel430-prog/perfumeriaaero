@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { products } from '@/data/products';
+import { useProductStore } from '@/store/productStore';
 import { useCartStore } from '@/store/cartStore';
 import { 
   Minus, 
@@ -12,14 +12,13 @@ import {
   Twitter, 
   Linkedin, 
   Eye,
-  ChevronRight,
-  ChevronLeft,
   Maximize2
 } from 'lucide-react';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState(products[0]); // Default init
+  const { getProduct } = useProductStore();
+  const [product, setProduct] = useState(getProduct(id || ''));
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState('');
   const [viewCount, setViewCount] = useState(20);
@@ -27,21 +26,23 @@ const ProductDetail = () => {
   const addToCart = useCartStore((state) => state.addToCart);
 
   useEffect(() => {
-    const foundProduct = products.find(p => p.id === Number(id));
-    if (foundProduct) {
-      setProduct(foundProduct);
-      setActiveImage(foundProduct.image);
+    if (id) {
+      const foundProduct = getProduct(id);
+      if (foundProduct) {
+        setProduct(foundProduct);
+        setActiveImage(foundProduct.image);
+      }
     }
     // Randomize view count slightly for "live" feel
     setViewCount(Math.floor(Math.random() * (30 - 15 + 1)) + 15);
-  }, [id]);
+  }, [id, getProduct]);
 
-  if (!product) return <div className="p-20 text-center">Producto no encontrado</div>;
+  if (!product) return <div className="p-20 text-center text-white">Producto no encontrado</div>;
 
   // Mock discount logic
-  const hasDiscount = product.id % 3 === 0;
-  const discountPercent = 13;
-  const originalPrice = hasDiscount ? Math.round(product.price * (1 + discountPercent / 100)) : product.price;
+  const discountPercent = product.discount || 0;
+  const hasDiscount = discountPercent > 0;
+  const originalPrice = hasDiscount ? Math.round(product.price / (1 - discountPercent / 100)) : product.price;
 
   // Mock thumbnails (using same image for demo)
   const images = [product.image, product.image, product.image];

@@ -12,7 +12,11 @@ import AdminLayout from "@/layouts/AdminLayout";
 import AdminLogin from "@/pages/admin/Login";
 import AdminDashboard from "@/pages/admin/Dashboard";
 import AdminProducts from "@/pages/admin/Products";
-import AdminPlaceholder from "@/pages/admin/Placeholder";
+import AdminCustomers from "@/pages/admin/Customers";
+import AdminOrders from "@/pages/admin/Orders";
+import AdminCategories from "@/pages/admin/Categories";
+import Checkout from "@/pages/Checkout";
+import Profile from "@/pages/Profile";
 import { useAuthStore } from "@/store/authStore";
 
 // Protected Route Component
@@ -36,6 +40,8 @@ export default function App() {
           <Route path="/hombre" element={<Shop category="hombre" />} />
           <Route path="/producto/:id" element={<ProductDetail />} />
           <Route path="/carrito" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/tienda" element={<Shop category="mujer" />} /> 
@@ -49,8 +55,9 @@ export default function App() {
             <Route index element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="products" element={<AdminProducts />} />
-            <Route path="categories" element={<AdminPlaceholder title="Gestión de Categorías" />} />
-            <Route path="offers" element={<AdminPlaceholder title="Gestión de Ofertas" />} />
+            <Route path="categories" element={<AdminCategories />} />
+            <Route path="orders" element={<AdminOrders />} />
+            <Route path="customers" element={<AdminCustomers />} />
             <Route path="inventory" element={<AdminPlaceholder title="Inventario" />} />
             <Route path="settings" element={<AdminPlaceholder title="Configuración" />} />
           </Route>

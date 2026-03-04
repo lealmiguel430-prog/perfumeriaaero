@@ -1,12 +1,12 @@
 import { create } from 'zustand';
 
 export interface Product {
-  id: number;
+  id: string;
   name: string;
   price: number;
   image: string;
-  category: 'mujer' | 'hombre' | 'unisex';
-  type: 'diseñador' | 'arabe' | 'nicho' | 'fragancia';
+  category: string;
+  type?: string;
   description?: string;
   discount?: number;
 }
@@ -19,8 +19,8 @@ interface CartState {
   items: CartItem[];
   isOpen: boolean;
   addToCart: (product: Product) => void;
-  removeFromCart: (productId: number) => void;
-  updateQuantity: (productId: number, quantity: number) => void;
+  removeFromCart: (productId: string) => void;
+  updateQuantity: (productId: string, quantity: number) => void;
   toggleCart: () => void;
   clearCart: () => void;
   total: () => number;

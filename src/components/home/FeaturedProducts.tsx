@@ -1,47 +1,11 @@
 import ProductCard from '../common/ProductCard';
-import { Product } from '@/store/cartStore';
-
-// Mock data matching Product interface
-const featuredProducts: Product[] = [
-  {
-    id: 1,
-    name: 'Eternity Rose',
-    price: 120000,
-    image: 'https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=Rose%20scented%20perfume%20bottle%2C%20dark%20background%2C%20gold%20details%2C%20moody%20floral%2C%20cinematic&image_size=portrait_4_3',
-    category: 'mujer',
-    type: 'diseñador',
-    description: 'Elegancia atemporal en cada gota.'
-  },
-  {
-    id: 2,
-    name: 'Midnight Oud',
-    price: 180000,
-    image: 'https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=Dark%20oud%20perfume%20bottle%2C%20gold%20cap%2C%20black%20velvet%20background%2C%20mysterious%20atmosphere&image_size=portrait_4_3',
-    category: 'hombre',
-    type: 'arabe',
-    description: 'Misterio y poder en una fragancia intensa.'
-  },
-  {
-    id: 3,
-    name: 'Citrus Breeze',
-    price: 95000,
-    image: 'https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=Fresh%20citrus%20perfume%20bottle%2C%20dark%20glass%2C%20water%20droplets%2C%20dramatic%20lighting&image_size=portrait_4_3',
-    category: 'unisex',
-    type: 'nicho',
-    description: 'Frescura vibrante para espíritus libres.'
-  },
-  {
-    id: 4,
-    name: 'Velvet Amber',
-    price: 145000,
-    image: 'https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=Amber%20colored%20perfume%20bottle%2C%20gold%20filigree%2C%20dark%20background%2C%20warm%20glow&image_size=portrait_4_3',
-    category: 'mujer',
-    type: 'nicho',
-    description: 'Calidez envolvente y sofisticada.'
-  },
-];
+import { useProductStore } from '@/store/productStore';
 
 const FeaturedProducts = () => {
+  const { products } = useProductStore();
+  // Get first 4 products as featured
+  const featuredProducts = products.slice(0, 4);
+
   return (
     <section className="py-24 bg-[#0B0B0B]">
       <div className="container-custom">

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { products } from '@/data/products';
+import { useProductStore } from '@/store/productStore';
 import ProductCard from '@/components/common/ProductCard';
 import SidebarFilters, { FilterState } from '@/components/shop/SidebarFilters';
 import { Filter, X, ChevronDown } from 'lucide-react';
@@ -12,6 +12,7 @@ interface ShopProps {
 const Shop = ({ category }: ShopProps) => {
   const [searchParams] = useSearchParams();
   const typeFilter = searchParams.get('type');
+  const { products } = useProductStore();
   
   // Filter State
   const [filters, setFilters] = useState<FilterState>({

@@ -10,7 +10,8 @@ import {
   Settings, 
   LogOut, 
   Menu, 
-  X 
+  X,
+  Users
 } from 'lucide-react';
 
 const AdminLayout = () => {
@@ -28,8 +29,8 @@ const AdminLayout = () => {
     { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Productos', path: '/admin/products', icon: Package },
     { name: 'Categorías', path: '/admin/categories', icon: Tags },
-    { name: 'Ofertas', path: '/admin/offers', icon: Percent },
-    { name: 'Inventario', path: '/admin/inventory', icon: ClipboardList },
+    { name: 'Pedidos', path: '/admin/orders', icon: ClipboardList },
+    { name: 'Clientes', path: '/admin/customers', icon: Users }, // Changed icon import needed
     { name: 'Configuración', path: '/admin/settings', icon: Settings },
   ];
 

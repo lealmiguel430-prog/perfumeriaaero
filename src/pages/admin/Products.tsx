@@ -1,29 +1,11 @@
 import { useState } from 'react';
 import { Plus, Search, Edit, Trash2, X, Save, Image as ImageIcon } from 'lucide-react';
-import { products as initialProducts } from '../../data/products';
-
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  category: string;
-  image: string;
-  description: string;
-  stock?: number;
-  status?: 'active' | 'draft';
-  discount?: number;
-}
+import { useProductStore, Product } from '../../store/productStore';
+import { useCategoryStore } from '../../store/categoryStore';
 
 const AdminProducts = () => {
-  const [products, setProducts] = useState<Product[]>(initialProducts.map(p => ({
-    ...p,
-    id: p.id.toString(),
-    description: p.description || '',
-    category: p.category as string,
-    stock: Math.floor(Math.random() * 50) + 5,
-    status: 'active' as const,
-    discount: 0
-  })));
+  const { products, addProduct, updateProduct, deleteProduct } = useProductStore();
+  const { categories } = useCategoryStore();
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
@@ -68,7 +50,7 @@ const AdminProducts = () => {
 
   const handleDelete = (id: string) => {
     if (window.confirm('¿Estás seguro de eliminar este producto?')) {
-      setProducts(products.filter(p => p.id !== id));
+      deleteProduct(id);
     }
   };
 
@@ -77,16 +59,14 @@ const AdminProducts = () => {
     
     if (currentProduct) {
       // Edit
-      setProducts(products.map(p => 
-        p.id === currentProduct.id ? { ...formData, id: currentProduct.id } as Product : p
-      ));
+      updateProduct(currentProduct.id, formData);
     } else {
       // Create
       const newProduct = {
         ...formData,
         id: Date.now().toString(),
       } as Product;
-      setProducts([newProduct, ...products]);
+      addProduct(newProduct);
     }
     setIsModalOpen(false);
   };
@@ -122,9 +102,9 @@ const AdminProducts = () => {
         <div className="flex gap-2">
           <select className="flex-1 bg-black/50 border border-white/10 text-white px-4 py-2 rounded focus:border-gold/50 focus:outline-none">
             <option value="">Categoría</option>
-            <option value="Hombre">Hombre</option>
-            <option value="Mujer">Mujer</option>
-            <option value="Unisex">Unisex</option>
+            {categories.map(cat => (
+              <option key={cat.id} value={cat.name}>{cat.name}</option>
+            ))}
           </select>
           <select className="flex-1 bg-black/50 border border-white/10 text-white px-4 py-2 rounded focus:border-gold/50 focus:outline-none">
             <option value="">Estado</option>
@@ -134,7 +114,7 @@ const AdminProducts = () => {
         </div>
       </div>
 
-      {/* Products Grid (Mobile) & Table (Desktop) */}
+      {/* Products Grid/Table */}
       <div className="bg-[#121212] border border-white/5 rounded-lg overflow-hidden">
         
         {/* Mobile View: Cards */}
@@ -161,7 +141,7 @@ const AdminProducts = () => {
                 <div className="mt-2 flex items-center justify-between">
                   <div>
                     <span className="text-gold font-bold">${product.price.toLocaleString('es-CO')}</span>
-                    {product.discount && product.discount > 0 && (
+                    {product.discount > 0 && (
                       <span className="ml-2 text-[10px] text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded border border-red-500/20">
                         -{product.discount}%
                       </span>
@@ -220,7 +200,7 @@ const AdminProducts = () => {
                     ${product.price.toLocaleString('es-CO')}
                   </td>
                   <td className="px-6 py-4">
-                    {product.discount && product.discount > 0 ? (
+                    {product.discount > 0 ? (
                       <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-red-500/10 text-red-500 border border-red-500/20">
                         -{product.discount}%
                       </span>
@@ -302,7 +282,7 @@ const AdminProducts = () => {
                       type="text" 
                       className="absolute inset-0 opacity-0 cursor-pointer"
                       placeholder="URL de imagen"
-                      onChange={(e) => setFormData({...formData, image: e.target.value})} // Simplification for demo
+                      onChange={(e) => setFormData({...formData, image: e.target.value})}
                     />
                   </div>
                 </div>
@@ -325,9 +305,9 @@ const AdminProducts = () => {
                     value={formData.category}
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
                   >
-                    <option value="Mujer">Mujer</option>
-                    <option value="Hombre">Hombre</option>
-                    <option value="Unisex">Unisex</option>
+                    {categories.map(cat => (
+                      <option key={cat.id} value={cat.name}>{cat.name}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -361,13 +341,9 @@ const AdminProducts = () => {
                     onChange={(e) => setFormData({...formData, discount: Number(e.target.value)})}
                   >
                     <option value="0">Sin oferta</option>
-                    <option value="10">10% OFF</option>
-                    <option value="20">20% OFF</option>
-                    <option value="30">30% OFF</option>
-                    <option value="40">40% OFF</option>
-                    <option value="50">50% OFF</option>
-                    <option value="60">60% OFF</option>
-                    <option value="70">70% OFF</option>
+                    {[10, 20, 30, 40, 50, 60, 70].map(d => (
+                      <option key={d} value={d}>{d}% OFF</option>
+                    ))}
                   </select>
                 </div>
 
