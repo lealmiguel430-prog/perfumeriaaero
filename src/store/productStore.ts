@@ -14,6 +14,7 @@ export interface Product {
   type?: string;
   scentFamily?: string;
   collection?: 'catalog' | 'new';
+  size?: string;
 }
 
 interface ProductState {

@@ -22,7 +22,8 @@ const AdminProducts = () => {
     status: 'active',
     discount: 0,
     scentFamily: 'Floral',
-    collection: 'catalog'
+    collection: 'catalog',
+    size: '100ml'
   });
 
   // Filter products based on search
@@ -47,7 +48,8 @@ const AdminProducts = () => {
         status: 'active',
         discount: 0,
         scentFamily: 'Floral',
-        collection: 'catalog'
+        collection: 'catalog',
+        size: '100ml'
       });
     }
     setIsModalOpen(true);
@@ -117,7 +119,8 @@ const AdminProducts = () => {
               discount: Number(row.discount) || 0,
               scentFamily: row.scentFamily || 'Floral',
               collection: row.collection === 'new' ? 'new' : 'catalog',
-              type: row.type || 'diseñador'
+              type: row.type || 'diseñador',
+              size: row.size || '100ml'
             };
             addProduct(newProduct);
             importedCount++;
@@ -430,6 +433,19 @@ const AdminProducts = () => {
                   >
                     <option value="catalog">Catálogo General</option>
                     <option value="new">Nuevos Lanzamientos</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-400">Tamaño</label>
+                  <select 
+                    className="w-full bg-black/50 border border-white/10 text-white px-4 py-2 rounded focus:border-gold/50 focus:outline-none"
+                    value={formData.size}
+                    onChange={(e) => setFormData({...formData, size: e.target.value})}
+                  >
+                    <option value="50ml">50ml</option>
+                    <option value="100ml">100ml</option>
+                    <option value="200ml">200ml</option>
                   </select>
                 </div>
 
