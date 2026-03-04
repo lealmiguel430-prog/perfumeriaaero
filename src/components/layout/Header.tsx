@@ -107,13 +107,13 @@ const Header = () => {
             </button>
             
             {user ? (
-              <div className="relative group hidden sm:block">
+              <div className="relative group">
                 <button className="flex items-center gap-2 hover:text-gold transition-colors py-2">
                   <User size={20} strokeWidth={1.5} />
-                  <span className="text-xs font-bold uppercase max-w-[100px] truncate">
-                    Hola, {user.name.split(' ')[0]}
+                  <span className="text-xs font-bold uppercase max-w-[100px] truncate hidden sm:block">
+                    {user.name.split(' ')[0]}
                   </span>
-                  <ChevronDown size={12} />
+                  <ChevronDown size={12} className="hidden sm:block" />
                 </button>
                 {/* User Dropdown */}
                 <div className="absolute right-0 mt-0 w-48 bg-[#1A2220] border border-gold/20 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform translate-y-2 group-hover:translate-y-0">
@@ -147,7 +147,7 @@ const Header = () => {
                 </div>
               </div>
             ) : (
-              <Link to="/login" className="hover:text-gold transition-colors hidden sm:block flex items-center gap-2">
+              <Link to="/login" className="hover:text-gold transition-colors flex items-center gap-2">
                 <User size={20} strokeWidth={1.5} />
                 <span className="text-xs font-bold uppercase hidden lg:block">Iniciar Sesión</span>
               </Link>
