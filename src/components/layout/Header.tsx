@@ -152,6 +152,13 @@ const Header = () => {
               </Link>
             )}
 
+            {/* Admin Button for better visibility */}
+            {user?.role === 'admin' && (
+              <Link to="/admin/dashboard" className="hidden lg:flex items-center justify-center text-[10px] font-bold text-black bg-gold px-2 py-1 rounded hover:bg-white transition-colors uppercase tracking-wider ml-2">
+                ADMIN
+              </Link>
+            )}
+
             <Link to="/favoritos" className="hover:text-gold transition-colors hidden sm:block">
               <Heart size={20} strokeWidth={1.5} />
             </Link>
