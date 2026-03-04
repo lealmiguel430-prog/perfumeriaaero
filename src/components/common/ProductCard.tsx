@@ -12,10 +12,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   // Mock logic for badges
   const isNew = false;
-  // Deterministic "random" discount for demo purposes based on ID
-  const hasDiscount = id % 3 === 0;
-  const discountPercent = 13;
-  const originalPrice = hasDiscount ? Math.round(price * (1 + discountPercent / 100)) : price;
+  // Use discount from product prop if available, otherwise fallback to mock logic
+  const discountPercent = product.discount || 0;
+  const hasDiscount = discountPercent > 0;
+  const originalPrice = price; // Current price is the discounted price in our model, or we can adjust logic
+  // Typically: price = final price. If discount, original = price / (1 - discount/100)
+  const displayOriginalPrice = hasDiscount ? Math.round(price / (1 - discountPercent / 100)) : price;
 
   return (
     <div className="group relative bg-[#121212] border border-white/5 hover:border-gold/30 transition-all duration-500 flex flex-col h-full hover:shadow-[0_0_30px_rgba(212,175,55,0.1)] hover:-translate-y-1">
@@ -37,7 +39,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className="absolute top-3 left-3 flex flex-col gap-2 z-20">
           {hasDiscount && (
             <span className="bg-[#D9534F] text-white text-[10px] font-bold px-2 py-1 shadow-md backdrop-blur-sm bg-opacity-90">
-              -{discountPercent}%
+              -{discountPercent}% OFF
             </span>
           )}
           {isNew && (
@@ -86,7 +88,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className="mt-auto mb-4 flex items-center gap-3 justify-center">
           {hasDiscount && (
             <span className="text-xs text-gray-500 line-through">
-              ${originalPrice.toLocaleString('es-CO')}
+              ${displayOriginalPrice.toLocaleString('es-CO')}
             </span>
           )}
           <span className={`text-lg font-bold ${hasDiscount ? 'text-[#D9534F]' : 'text-gold'}`}>

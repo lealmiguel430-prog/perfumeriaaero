@@ -8,6 +8,7 @@ export interface Product {
   category: 'mujer' | 'hombre' | 'unisex';
   type: 'diseñador' | 'arabe' | 'nicho' | 'fragancia';
   description?: string;
+  discount?: number;
 }
 
 export interface CartItem extends Product {

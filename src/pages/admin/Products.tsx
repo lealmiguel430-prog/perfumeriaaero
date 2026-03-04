@@ -11,6 +11,7 @@ interface Product {
   description: string;
   stock?: number;
   status?: 'active' | 'draft';
+  discount?: number;
 }
 
 const AdminProducts = () => {
@@ -20,7 +21,8 @@ const AdminProducts = () => {
     description: p.description || '',
     category: p.category as string,
     stock: Math.floor(Math.random() * 50) + 5,
-    status: 'active' as const
+    status: 'active' as const,
+    discount: 0
   })));
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +36,8 @@ const AdminProducts = () => {
     description: '',
     image: '',
     stock: 0,
-    status: 'active'
+    status: 'active',
+    discount: 0
   });
 
   // Filter products based on search
@@ -56,7 +59,8 @@ const AdminProducts = () => {
         description: '',
         image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1000&auto=format&fit=crop',
         stock: 10,
-        status: 'active'
+        status: 'active',
+        discount: 0
       });
     }
     setIsModalOpen(true);
@@ -155,7 +159,14 @@ const AdminProducts = () => {
                   </span>
                 </div>
                 <div className="mt-2 flex items-center justify-between">
-                  <span className="text-gold font-bold">${product.price.toLocaleString('es-CO')}</span>
+                  <div>
+                    <span className="text-gold font-bold">${product.price.toLocaleString('es-CO')}</span>
+                    {product.discount && product.discount > 0 && (
+                      <span className="ml-2 text-[10px] text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded border border-red-500/20">
+                        -{product.discount}%
+                      </span>
+                    )}
+                  </div>
                   <div className="flex gap-2">
                     <button 
                       onClick={() => handleOpenModal(product)}
@@ -184,6 +195,7 @@ const AdminProducts = () => {
                 <th className="px-6 py-4">Producto</th>
                 <th className="px-6 py-4">Categoría</th>
                 <th className="px-6 py-4">Precio</th>
+                <th className="px-6 py-4">Oferta</th>
                 <th className="px-6 py-4">Stock</th>
                 <th className="px-6 py-4">Estado</th>
                 <th className="px-6 py-4 text-right">Acciones</th>
@@ -206,6 +218,15 @@ const AdminProducts = () => {
                   <td className="px-6 py-4 text-gray-300">{product.category}</td>
                   <td className="px-6 py-4 text-white font-medium">
                     ${product.price.toLocaleString('es-CO')}
+                  </td>
+                  <td className="px-6 py-4">
+                    {product.discount && product.discount > 0 ? (
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-red-500/10 text-red-500 border border-red-500/20">
+                        -{product.discount}%
+                      </span>
+                    ) : (
+                      <span className="text-gray-500 text-xs">-</span>
+                    )}
                   </td>
                   <td className="px-6 py-4 text-gray-300">{product.stock}</td>
                   <td className="px-6 py-4">
@@ -330,6 +351,24 @@ const AdminProducts = () => {
                     value={formData.stock}
                     onChange={(e) => setFormData({...formData, stock: Number(e.target.value)})}
                   />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-400">Oferta (%)</label>
+                  <select 
+                    className="w-full bg-black/50 border border-white/10 text-white px-4 py-2 rounded focus:border-gold/50 focus:outline-none"
+                    value={formData.discount}
+                    onChange={(e) => setFormData({...formData, discount: Number(e.target.value)})}
+                  >
+                    <option value="0">Sin oferta</option>
+                    <option value="10">10% OFF</option>
+                    <option value="20">20% OFF</option>
+                    <option value="30">30% OFF</option>
+                    <option value="40">40% OFF</option>
+                    <option value="50">50% OFF</option>
+                    <option value="60">60% OFF</option>
+                    <option value="70">70% OFF</option>
+                  </select>
                 </div>
 
                 <div className="col-span-1 md:col-span-2 space-y-2">
