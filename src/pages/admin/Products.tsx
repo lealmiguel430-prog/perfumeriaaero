@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Plus, Search, Edit, Trash2, X, Save, Image as ImageIcon } from 'lucide-react';
+import { Plus, Search, Edit, Trash2, X, Save, Image as ImageIcon, Download, Upload } from 'lucide-react';
 import { useProductStore, Product } from '../../store/productStore';
 import { useCategoryStore } from '../../store/categoryStore';
+import * as XLSX from 'xlsx';
 
 const AdminProducts = () => {
   const { products, addProduct, updateProduct, deleteProduct } = useProductStore();
@@ -75,6 +76,64 @@ const AdminProducts = () => {
     setIsModalOpen(false);
   };
 
+  const handleExport = () => {
+    const ws = XLSX.utils.json_to_sheet(products);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Productos");
+    XLSX.writeFile(wb, "productos_aero.xlsx");
+  };
+
+  const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      try {
+        const bstr = evt.target?.result;
+        const wb = XLSX.read(bstr, { type: 'binary' });
+        const wsname = wb.SheetNames[0];
+        const ws = wb.Sheets[wsname];
+        const data = XLSX.utils.sheet_to_json<any>(ws);
+
+        if (data.length === 0) {
+          alert('El archivo está vacío o no tiene datos válidos.');
+          return;
+        }
+
+        let importedCount = 0;
+        data.forEach((row) => {
+          // Basic validation to ensure at least name exists
+          if (row.name) {
+            const newProduct: Product = {
+              id: Date.now().toString() + Math.random().toString(36).substr(2, 5),
+              name: row.name,
+              price: Number(row.price) || 0,
+              category: row.category || 'Mujer',
+              image: row.image || './images/products/product-1.jpg',
+              description: row.description || '',
+              stock: Number(row.stock) || 0,
+              status: row.status === 'draft' ? 'draft' : 'active',
+              discount: Number(row.discount) || 0,
+              scentFamily: row.scentFamily || 'Floral',
+              collection: row.collection === 'new' ? 'new' : 'catalog',
+              type: row.type || 'diseñador'
+            };
+            addProduct(newProduct);
+            importedCount++;
+          }
+        });
+        alert(`Se han importado ${importedCount} productos correctamente.`);
+      } catch (error) {
+        console.error("Error al importar:", error);
+        alert('Hubo un error al leer el archivo Excel.');
+      }
+    };
+    reader.readAsBinaryString(file);
+    // Reset input
+    e.target.value = '';
+  };
+
   return (
     <div className="pb-20 lg:pb-0">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
@@ -82,13 +141,43 @@ const AdminProducts = () => {
           <h1 className="text-2xl font-bold text-white">Gestión de Productos</h1>
           <p className="text-gray-400 text-sm mt-1">Administra tu inventario, precios y stock</p>
         </div>
-        <button 
-          onClick={() => handleOpenModal()}
-          className="btn-primary flex items-center justify-center gap-2 px-4 py-3 w-full md:w-auto"
-        >
-          <Plus size={18} />
-          Nuevo Producto
-        </button>
+        
+        <div className="flex flex-wrap gap-3">
+          {/* Export Button */}
+          <button 
+            onClick={handleExport}
+            className="flex items-center gap-2 px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded font-medium transition-colors"
+            title="Descargar lista de productos en Excel"
+          >
+            <Download size={18} />
+            <span className="hidden sm:inline">Exportar Excel</span>
+          </button>
+
+          {/* Import Button */}
+          <div className="relative">
+            <input 
+              type="file" 
+              accept=".xlsx, .xls" 
+              onChange={handleImport}
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              title="Subir archivo Excel con productos"
+            />
+            <button 
+              className="flex items-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded font-medium transition-colors w-full"
+            >
+              <Upload size={18} />
+              <span className="hidden sm:inline">Importar Excel</span>
+            </button>
+          </div>
+
+          <button 
+            onClick={() => handleOpenModal()}
+            className="btn-primary flex items-center justify-center gap-2 px-4 py-3"
+          >
+            <Plus size={18} />
+            <span className="hidden sm:inline">Nuevo Producto</span>
+          </button>
+        </div>
       </div>
 
       {/* Filters & Search */}
