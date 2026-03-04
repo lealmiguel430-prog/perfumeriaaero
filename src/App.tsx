@@ -15,6 +15,7 @@ import AdminProducts from "@/pages/admin/Products";
 import AdminCustomers from "@/pages/admin/Customers";
 import AdminOrders from "@/pages/admin/Orders";
 import AdminCategories from "@/pages/admin/Categories";
+import AdminPlaceholder from "@/pages/admin/Placeholder";
 import Checkout from "@/pages/Checkout";
 import Profile from "@/pages/Profile";
 import { useAuthStore } from "@/store/authStore";

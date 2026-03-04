@@ -9,10 +9,10 @@ export const products: Product[] = [
     image: "./images/products/product-1.jpg",
     category: "mujer",
     type: "diseñador",
-    description: "Una fragancia oriental floral, fresca y sensual."
+    description: "Una fragancia oriental floral, fresca y sensual.",
   },
   {
-    id: 2,
+    id: '2',
     name: "YSL Libre",
     price: 580000,
     image: "./images/products/product-2.jpg",
@@ -32,7 +32,7 @@ export const products: Product[] = [
   },
   // Mujer - Nicho
   {
-    id: 4,
+    id: '4',
     name: "Parfums de Marly Delina",
     price: 1200000,
     image: "./images/products/product-4.jpg",
@@ -81,7 +81,7 @@ export const products: Product[] = [
   },
   // Unisex/Fragancias
   {
-    id: 9,
+    id: '9',
     name: "Maison Francis Kurkdjian Baccarat Rouge 540",
     price: 1800000,
     image: "./images/products/product-9.jpg",
