@@ -22,7 +22,7 @@ const AdminLayout = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/admin/login');
+    navigate('/');
   };
 
   const menuItems = [
@@ -83,6 +83,13 @@ const AdminLayout = () => {
 
           {/* User & Logout */}
           <div className="p-4 border-t border-white/5">
+            <button 
+              onClick={handleExitAdmin}
+              className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gold hover:bg-gold/10 rounded-md transition-colors mb-2"
+            >
+              <LogOut size={18} className="rotate-180" />
+              Volver a la Tienda
+            </button>
             <div className="flex items-center gap-3 mb-4 px-2">
               <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold font-bold text-xs">
                 AD
