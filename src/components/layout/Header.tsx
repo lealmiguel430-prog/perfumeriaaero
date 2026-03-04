@@ -1,6 +1,6 @@
-import { Search, User, Heart, ShoppingCart, Menu, X, ChevronDown } from 'lucide-react';
+import { Search, User, Heart, ShoppingCart, Menu, X, ChevronDown, LogOut } from 'lucide-react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCartStore } from '../../store/cartStore';
 import { useAuthStore } from '../../store/authStore';
 
@@ -8,9 +8,15 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
   const { items, total, toggleCart } = useCartStore();
-  const { user } = useAuthStore();
+  const { user, logout } = useAuthStore();
+  const navigate = useNavigate();
   
   const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   const toggleSubMenu = (menu: string) => {
     if (openSubMenu === menu) {
@@ -99,9 +105,54 @@ const Header = () => {
             <button className="hover:text-gold transition-colors">
               <Search size={20} strokeWidth={1.5} />
             </button>
-            <Link to="/login" className="hover:text-gold transition-colors hidden sm:block">
-              <User size={20} strokeWidth={1.5} />
-            </Link>
+            
+            {user ? (
+              <div className="relative group hidden sm:block">
+                <button className="flex items-center gap-2 hover:text-gold transition-colors py-2">
+                  <User size={20} strokeWidth={1.5} />
+                  <span className="text-xs font-bold uppercase max-w-[100px] truncate">
+                    Hola, {user.name.split(' ')[0]}
+                  </span>
+                  <ChevronDown size={12} />
+                </button>
+                {/* User Dropdown */}
+                <div className="absolute right-0 mt-0 w-48 bg-[#1A2220] border border-gold/20 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform translate-y-2 group-hover:translate-y-0">
+                  <div className="py-2">
+                    <div className="px-4 py-2 border-b border-gold/10 mb-1">
+                      <p className="text-[10px] text-gray-400 uppercase tracking-wider">Conectado como</p>
+                      <p className="text-xs text-gold font-bold truncate">{user.email}</p>
+                    </div>
+                    <Link 
+                      to="/profile" 
+                      className="block px-4 py-2 text-xs text-gray-300 hover:bg-gold/10 hover:text-gold transition-colors uppercase tracking-wider"
+                    >
+                      Mi Perfil / Pedidos
+                    </Link>
+                    {user.role === 'admin' && (
+                       <Link 
+                        to="/admin/dashboard" 
+                        className="block px-4 py-2 text-xs text-gold hover:bg-gold/10 hover:text-gold-light transition-colors uppercase tracking-wider font-bold"
+                      >
+                        Panel Admin
+                      </Link>
+                    )}
+                    <button 
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2 text-xs text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors uppercase tracking-wider flex items-center gap-2 mt-1 border-t border-white/5 pt-2"
+                    >
+                      <LogOut size={14} />
+                      Cerrar Sesión
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link to="/login" className="hover:text-gold transition-colors hidden sm:block flex items-center gap-2">
+                <User size={20} strokeWidth={1.5} />
+                <span className="text-xs font-bold uppercase hidden lg:block">Iniciar Sesión</span>
+              </Link>
+            )}
+
             <Link to="/favoritos" className="hover:text-gold transition-colors hidden sm:block">
               <Heart size={20} strokeWidth={1.5} />
             </Link>
