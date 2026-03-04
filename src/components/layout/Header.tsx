@@ -149,7 +149,6 @@ const Header = () => {
             ) : (
               <Link to="/login" className="hover:text-gold transition-colors flex items-center gap-2">
                 <User size={20} strokeWidth={1.5} />
-                <span className="text-xs font-bold uppercase hidden lg:block">Iniciar Sesión</span>
               </Link>
             )}
 
