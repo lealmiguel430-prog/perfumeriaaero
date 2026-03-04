@@ -108,6 +108,8 @@ const Footer = () => {
         <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-xs text-gray-500 mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} Perfumeria Aero. Todos los derechos reservados.
+            <span className="mx-2">|</span>
+            <Link to="/admin/login" className="hover:text-gold transition-colors">Admin</Link>
           </p>
           <div className="flex items-center gap-4">
             <span className="text-xs text-gray-400 font-bold uppercase">Pagos Seguros con:</span>

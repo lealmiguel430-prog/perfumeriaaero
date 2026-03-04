@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 
 const AdminLayout = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const logout = useAuthStore((state) => state.logout);
@@ -34,7 +34,15 @@ const AdminLayout = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#090909] flex">
+    <div className="min-h-screen bg-[#090909] flex relative">
+      {/* Mobile Overlay */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
       <aside 
         className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#121212] border-r border-white/5 transform transition-transform duration-300 lg:relative lg:translate-x-0 ${
@@ -63,6 +71,7 @@ const AdminLayout = () => {
                 <Link
                   key={item.path}
                   to={item.path}
+                  onClick={() => setIsSidebarOpen(false)}
                   className={`flex items-center gap-3 px-4 py-3 rounded-md transition-colors ${
                     isActive 
                       ? 'bg-gold/10 text-gold border border-gold/20' 
