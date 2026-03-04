@@ -9,6 +9,7 @@ export interface Product {
   type?: string;
   description?: string;
   discount?: number;
+  size?: string;
 }
 
 export interface CartItem extends Product {
