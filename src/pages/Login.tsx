@@ -37,7 +37,8 @@ const Login = () => {
       
       // Redirect admins to dashboard, users to home or intended page
       if (isAdmin) {
-        navigate('/admin/dashboard');
+        // Redirect admins to home but with admin permissions enabled (so they see the button)
+        navigate('/');
       } else {
         navigate(redirectPath === '/' ? '/' : redirectPath);
       }
