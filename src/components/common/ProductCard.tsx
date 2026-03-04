@@ -79,7 +79,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
       {/* Product Info */}
       <div className="p-5 flex flex-col items-center text-center flex-grow bg-[#121212] relative z-10">
-        <p className="text-[10px] text-gold/80 uppercase tracking-widest mb-2">{category}</p>
+        <p className="text-[10px] text-gold/80 uppercase tracking-widest mb-1">{category}</p>
+        {product.size && (
+           <p className="text-[10px] text-gray-500 mb-2 font-medium tracking-wide border border-white/10 px-2 py-0.5 rounded-sm inline-block">{product.size}</p>
+        )}
         <h3 className="text-sm font-medium text-white mb-3 hover:text-gold transition-colors line-clamp-2 min-h-[40px] font-serif tracking-wide">
           <Link to={`/producto/${id}`}>{name}</Link>
         </h3>
