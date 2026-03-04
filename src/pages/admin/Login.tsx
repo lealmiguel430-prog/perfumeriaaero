@@ -31,7 +31,7 @@ const AdminLogin = () => {
     <div className="min-h-screen bg-[#050505] flex items-center justify-center px-4">
       <div className="max-w-md w-full bg-[#121212] border border-gold/20 p-8 rounded-lg shadow-[0_0_50px_rgba(212,175,55,0.1)]">
         <div className="text-center mb-8">
-          <img src="/logo.png" alt="Aero Admin" className="h-16 mx-auto mb-4 object-contain" />
+          <img src="./logo.png" alt="Aero Admin" className="h-24 mx-auto mb-4 object-contain" />
           <h2 className="text-2xl font-serif text-gold">Panel Administrativo</h2>
           <p className="text-gray-400 text-sm mt-2">Acceso restringido solo para personal autorizado</p>
         </div>
