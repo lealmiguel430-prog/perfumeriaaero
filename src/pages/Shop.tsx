@@ -112,7 +112,7 @@ const Shop = ({ category }: ShopProps) => {
             {/* Sidebar Filters - Desktop & Mobile Drawer */}
             <aside className={`
               fixed inset-y-0 left-0 z-50 w-[280px] bg-[#0B0B0B] border-r border-white/10 p-6 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:w-1/4 lg:bg-transparent lg:border-none lg:p-0
-              ${isMobileFilterOpen ? 'translate-x-0' : '-translate-x-full'}
+              ${isMobileFilterOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
             `}>
               <div className="flex justify-between items-center mb-8 lg:hidden">
                 <h2 className="text-xl font-serif text-gold">Filtros</h2>
