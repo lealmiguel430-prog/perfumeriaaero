@@ -12,6 +12,8 @@ export interface Product {
   status: 'active' | 'draft';
   discount: number;
   type?: string;
+  scentFamily?: string;
+  collection?: 'catalog' | 'new';
 }
 
 interface ProductState {
@@ -31,6 +33,8 @@ const initialProducts: Product[] = [
     image: "./images/products/product-1.jpg",
     category: "mujer",
     type: "diseñador",
+    scentFamily: "Floral",
+    collection: "catalog",
     description: "Una fragancia oriental floral, fresca y sensual.",
     stock: 21,
     status: 'active',
@@ -43,6 +47,8 @@ const initialProducts: Product[] = [
     image: "./images/products/product-2.jpg",
     category: "mujer",
     type: "diseñador",
+    scentFamily: "Floral",
+    collection: "new",
     description: "La libertad de vivir todo al límite.",
     stock: 10,
     status: 'active',
@@ -55,6 +61,8 @@ const initialProducts: Product[] = [
     image: "./images/products/product-3.jpg",
     category: "mujer",
     type: "arabe",
+    scentFamily: "Oriental",
+    collection: "catalog",
     description: "Dulce, atalcado y avainillado.",
     stock: 27,
     status: 'active',

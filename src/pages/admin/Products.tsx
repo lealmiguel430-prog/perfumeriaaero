@@ -19,7 +19,9 @@ const AdminProducts = () => {
     image: '',
     stock: 0,
     status: 'active',
-    discount: 0
+    discount: 0,
+    scentFamily: 'Floral',
+    collection: 'catalog'
   });
 
   // Filter products based on search
@@ -42,7 +44,9 @@ const AdminProducts = () => {
         image: './images/products/product-1.jpg',
         stock: 10,
         status: 'active',
-        discount: 0
+        discount: 0,
+        scentFamily: 'Floral',
+        collection: 'catalog'
       });
     }
     setIsModalOpen(true);
@@ -308,6 +312,35 @@ const AdminProducts = () => {
                     {categories.map(cat => (
                       <option key={cat.id} value={cat.name}>{cat.name}</option>
                     ))}
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-400">Familia Olfativa</label>
+                  <select 
+                    className="w-full bg-black/50 border border-white/10 text-white px-4 py-2 rounded focus:border-gold/50 focus:outline-none"
+                    value={formData.scentFamily}
+                    onChange={(e) => setFormData({...formData, scentFamily: e.target.value})}
+                  >
+                    <option value="Amaderado">Amaderado</option>
+                    <option value="Cítrico">Cítrico</option>
+                    <option value="Floral">Floral</option>
+                    <option value="Oriental">Oriental</option>
+                    <option value="Frutal">Frutal</option>
+                    <option value="Fresco">Fresco</option>
+                    <option value="Gourmand">Gourmand</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-400">Colección / Ubicación</label>
+                  <select 
+                    className="w-full bg-black/50 border border-white/10 text-white px-4 py-2 rounded focus:border-gold/50 focus:outline-none"
+                    value={formData.collection}
+                    onChange={(e) => setFormData({...formData, collection: e.target.value as 'catalog' | 'new'})}
+                  >
+                    <option value="catalog">Catálogo General</option>
+                    <option value="new">Nuevos Lanzamientos</option>
                   </select>
                 </div>
 
