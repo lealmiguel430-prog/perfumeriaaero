@@ -53,7 +53,7 @@ const Header = () => {
   ];
 
   if (user?.role === 'admin') {
-    navLinks.push({ name: 'ADMIN', path: '/admin/dashboard' });
+    // navLinks.push({ name: 'ADMIN', path: '/admin/dashboard' });
   }
 
   return (
