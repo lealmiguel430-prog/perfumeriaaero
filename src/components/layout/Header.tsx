@@ -2,11 +2,13 @@ import { Search, User, Heart, ShoppingCart, Menu, X, ChevronDown } from 'lucide-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCartStore } from '../../store/cartStore';
+import { useAuthStore } from '../../store/authStore';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
   const { items, total, toggleCart } = useCartStore();
+  const { user } = useAuthStore();
   
   const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -43,6 +45,10 @@ const Header = () => {
     { name: 'CATALOGO', path: '/tienda' },
     { name: 'OFERTAS', path: '/mujer?type=fragancia' },
   ];
+
+  if (user?.role === 'admin') {
+    navLinks.push({ name: 'ADMIN', path: '/admin/dashboard' });
+  }
 
   return (
     <header className="bg-[#121212] border-b border-gold/20 sticky top-0 z-50 shadow-lg shadow-black/50">
