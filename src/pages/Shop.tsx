@@ -109,31 +109,25 @@ const Shop = ({ category }: ShopProps) => {
         <div className="container-custom">
           
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-            {/* Sidebar Filters - Desktop */}
-            <aside className="hidden lg:block lg:col-span-1">
-              <div className="sticky top-24">
-                <SidebarFilters 
-                  filters={filters} 
-                  onFilterChange={setFilters}
-                />
+            {/* Sidebar Filters - Desktop & Mobile Drawer */}
+            <aside className={`
+              fixed inset-y-0 left-0 z-50 w-[280px] bg-[#0B0B0B] border-r border-white/10 p-6 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:w-auto lg:bg-transparent lg:border-none lg:p-0 lg:col-span-1
+              ${isMobileFilterOpen ? 'translate-x-0' : '-translate-x-full'}
+            `}>
+              <div className="flex justify-between items-center mb-8 lg:hidden">
+                <h2 className="text-xl font-serif text-gold">Filtros</h2>
+                <button onClick={() => setIsMobileFilterOpen(false)} className="text-gray-400 hover:text-white p-2">
+                  <X size={24} />
+                </button>
               </div>
-            </aside>
 
-            {/* Mobile Filter Drawer Overlay */}
-            <div className={`fixed inset-0 z-[60] lg:hidden transition-opacity duration-300 ${isMobileFilterOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-              <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setIsMobileFilterOpen(false)}></div>
-              <div className={`absolute inset-y-0 right-0 w-[85%] max-w-sm bg-[#1A2220] p-6 shadow-2xl transform transition-transform duration-300 border-l border-gold/20 overflow-y-auto ${isMobileFilterOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                <div className="flex justify-between items-center mb-8 border-b border-white/10 pb-4">
-                  <h2 className="text-xl font-serif text-gold">Filtros</h2>
-                  <button onClick={() => setIsMobileFilterOpen(false)} className="text-gray-400 hover:text-white p-2">
-                    <X size={24} />
-                  </button>
-                </div>
+              <div className="sticky top-24 max-h-[calc(100vh-100px)] overflow-y-auto lg:max-h-none lg:overflow-visible custom-scrollbar">
                 <SidebarFilters 
                   filters={filters} 
                   onFilterChange={setFilters}
                 />
-                <div className="mt-8 pt-6 border-t border-white/10 sticky bottom-0 bg-[#1A2220] pb-4">
+                
+                <div className="mt-8 pt-6 border-t border-white/10 lg:hidden">
                   <button 
                     onClick={() => setIsMobileFilterOpen(false)}
                     className="w-full btn-primary"
@@ -142,7 +136,15 @@ const Shop = ({ category }: ShopProps) => {
                   </button>
                 </div>
               </div>
-            </div>
+            </aside>
+
+            {/* Mobile Filter Overlay Backdrop */}
+            {isMobileFilterOpen && (
+              <div 
+                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 lg:hidden"
+                onClick={() => setIsMobileFilterOpen(false)}
+              />
+            )}
 
             {/* Content Area */}
             <div className="lg:col-span-3">
