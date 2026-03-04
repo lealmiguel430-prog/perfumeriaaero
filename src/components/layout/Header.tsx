@@ -111,7 +111,7 @@ const Header = () => {
                 <button className="flex items-center gap-2 hover:text-gold transition-colors py-2">
                   <User size={20} strokeWidth={1.5} />
                   <span className="text-xs font-bold uppercase max-w-[100px] truncate hidden sm:block">
-                    {user.name.split(' ')[0]}
+                    {user.name}
                   </span>
                   <ChevronDown size={12} className="hidden sm:block" />
                 </button>
