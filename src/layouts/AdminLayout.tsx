@@ -52,14 +52,9 @@ const AdminLayout = () => {
       >
         <div className="h-full flex flex-col">
           {/* Logo */}
-          <div className="p-6 border-b border-white/5 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="Aero" className="h-8 w-auto" />
-              <span className="text-gold font-serif font-bold tracking-wider">ADMIN</span>
-            </div>
-            <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden text-gray-400">
-              <X size={20} />
-            </button>
+          <div className="p-6 border-b border-white/5 flex flex-col items-center">
+            <img src="/logo.png" alt="Aero Perfumería" className="h-16 w-auto mb-2" />
+            <span className="text-gold font-serif font-bold tracking-[0.2em] text-xs">ADMINISTRACIÓN</span>
           </div>
 
           {/* Navigation */}
