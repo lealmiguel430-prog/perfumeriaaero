@@ -15,6 +15,7 @@ import AdminProducts from "@/pages/admin/Products";
 import AdminCustomers from "@/pages/admin/Customers";
 import AdminOrders from "@/pages/admin/Orders";
 import AdminCategories from "@/pages/admin/Categories";
+import AdminSettings from "@/pages/admin/Settings";
 import AdminPlaceholder from "@/pages/admin/Placeholder";
 import Checkout from "@/pages/Checkout";
 import Profile from "@/pages/Profile";
@@ -60,7 +61,7 @@ export default function App() {
             <Route path="orders" element={<AdminOrders />} />
             <Route path="customers" element={<AdminCustomers />} />
             <Route path="inventory" element={<AdminPlaceholder title="Inventario" />} />
-            <Route path="settings" element={<AdminPlaceholder title="Configuración" />} />
+            <Route path="settings" element={<AdminSettings />} />
           </Route>
         </Route>
 
