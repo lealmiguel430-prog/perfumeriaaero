@@ -108,10 +108,10 @@ const Shop = ({ category }: ShopProps) => {
       <div className="flex-grow py-12">
         <div className="container-custom">
           
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+          <div className="flex flex-col lg:flex-row gap-12 relative">
             {/* Sidebar Filters - Desktop & Mobile Drawer */}
             <aside className={`
-              fixed inset-y-0 left-0 z-50 w-[280px] bg-[#0B0B0B] border-r border-white/10 p-6 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:w-auto lg:bg-transparent lg:border-none lg:p-0 lg:col-span-1
+              fixed inset-y-0 left-0 z-50 w-[280px] bg-[#0B0B0B] border-r border-white/10 p-6 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:w-1/4 lg:bg-transparent lg:border-none lg:p-0
               ${isMobileFilterOpen ? 'translate-x-0' : '-translate-x-full'}
             `}>
               <div className="flex justify-between items-center mb-8 lg:hidden">
@@ -147,7 +147,7 @@ const Shop = ({ category }: ShopProps) => {
             )}
 
             {/* Content Area */}
-            <div className="lg:col-span-3">
+            <div className="w-full lg:w-3/4">
               {/* Top Controls */}
               <div className="flex flex-col sm:flex-row justify-between items-center mb-8 pb-4 border-b border-white/5 text-xs text-gray-400 gap-4">
                 
