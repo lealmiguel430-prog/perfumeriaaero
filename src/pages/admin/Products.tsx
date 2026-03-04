@@ -16,6 +16,9 @@ interface Product {
 const AdminProducts = () => {
   const [products, setProducts] = useState<Product[]>(initialProducts.map(p => ({
     ...p,
+    id: p.id.toString(),
+    description: p.description || '',
+    category: p.category as string,
     stock: Math.floor(Math.random() * 50) + 5,
     status: 'active' as const
   })));
