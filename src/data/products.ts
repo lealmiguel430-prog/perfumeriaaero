@@ -3,7 +3,7 @@ import { Product } from '../store/cartStore';
 export const products: Product[] = [
   // Mujer - Diseñador
   {
-    id: 1,
+    id: '1',
     name: "Chanel Coco Mademoiselle",
     price: 650000,
     image: "./images/products/product-1.jpg",
@@ -22,7 +22,7 @@ export const products: Product[] = [
   },
   // Mujer - Arabe
   {
-    id: 3,
+    id: '3',
     name: "Lattafa Yara",
     price: 180000,
     image: "./images/products/product-3.jpg",
@@ -42,7 +42,7 @@ export const products: Product[] = [
   },
   // Hombre - Diseñador
   {
-    id: 5,
+    id: '5',
     name: "Dior Sauvage",
     price: 620000,
     image: "./images/products/product-5.jpg",
@@ -51,7 +51,7 @@ export const products: Product[] = [
     description: "Radicalmente fresco, noble y crudo."
   },
   {
-    id: 6,
+    id: '6',
     name: "Versace Eros",
     price: 450000,
     image: "./images/products/product-6.jpg",
@@ -61,7 +61,7 @@ export const products: Product[] = [
   },
   // Hombre - Arabe
   {
-    id: 7,
+    id: '7',
     name: "Afnan 9PM",
     price: 160000,
     image: "./images/products/product-7.jpg",
@@ -71,7 +71,7 @@ export const products: Product[] = [
   },
   // Hombre - Nicho
   {
-    id: 8,
+    id: '8',
     name: "Creed Aventus",
     price: 1500000,
     image: "./images/products/product-8.jpg",
