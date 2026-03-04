@@ -12,6 +12,8 @@ interface ShopProps {
 const Shop = ({ category }: ShopProps) => {
   const [searchParams] = useSearchParams();
   const typeFilter = searchParams.get('type');
+  const collectionFilter = searchParams.get('collection');
+  const discountFilter = searchParams.get('discount');
   const { products } = useProductStore();
   
   // Filter State
@@ -27,19 +29,38 @@ const Shop = ({ category }: ShopProps) => {
 
   // Initialize filters from URL
   useEffect(() => {
-    if (typeFilter) {
-      // If type is a known category, set it
-      // This logic would be more complex in a real app
-    }
+    // ... logic for filters
   }, [typeFilter]);
 
   // Apply filters
   useEffect(() => {
-    let result = products.filter(p => p.category === category || p.category === 'unisex');
+    let result = products;
     
+    // Category Filter (Mujer/Hombre) - Only apply if not viewing "Ofertas" page which might span categories
+    if (!discountFilter && category !== 'mujer' && category !== 'hombre') {
+       // Allow all if shop page is generic
+    } else if (!discountFilter) {
+       result = result.filter(p => p.category === category || p.category === 'unisex');
+    }
+
     // Filter by Type (from URL)
     if (typeFilter) {
-      result = result.filter(p => p.type === typeFilter);
+      if (typeFilter === 'fragancia') {
+         // This is used for "OFERTAS" link in header
+         result = result.filter(p => p.discount > 0);
+      } else {
+         result = result.filter(p => p.type === typeFilter || p.scentFamily === typeFilter);
+      }
+    }
+
+    // Filter by Discount (from URL)
+    if (discountFilter === 'true') {
+      result = result.filter(p => p.discount > 0);
+    }
+    
+    // Filter by Collection
+    if (collectionFilter) {
+      result = result.filter(p => p.collection === collectionFilter);
     }
 
     // Filter by Size
@@ -55,9 +76,11 @@ const Shop = ({ category }: ShopProps) => {
     }
     
     setFilteredProducts(result);
-  }, [category, typeFilter, filters]);
+  }, [category, typeFilter, collectionFilter, discountFilter, filters, products]);
 
-  const categoryTitle = category === 'mujer' ? 'Perfumes para Mujer' : 'Perfumes para Hombre';
+  const categoryTitle = discountFilter === 'true' || typeFilter === 'fragancia' 
+    ? 'Ofertas Exclusivas' 
+    : (category === 'mujer' ? 'Perfumes para Mujer' : 'Perfumes para Hombre');
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {

@@ -33,10 +33,10 @@ const Header = () => {
       name: 'FAMILIAS OLFATIVAS', 
       path: '#',
       subItems: [
-        { name: 'Amaderado', path: '/mujer?type=diseñador' },
-        { name: 'Cítrico', path: '/hombre?type=diseñador' },
-        { name: 'Floral', path: '/mujer?type=diseñador' },
-        { name: 'Oriental', path: '/hombre?type=arabe' },
+        { name: 'Amaderado', path: '/mujer?type=Amaderado' },
+        { name: 'Cítrico', path: '/hombre?type=Cítrico' },
+        { name: 'Floral', path: '/mujer?type=Floral' },
+        { name: 'Oriental', path: '/hombre?type=Oriental' },
       ]
     },
     { 
@@ -49,7 +49,7 @@ const Header = () => {
       ]
     },
     { name: 'CATALOGO', path: '/tienda' },
-    { name: 'OFERTAS', path: '/mujer?type=fragancia' },
+    { name: 'OFERTAS', path: '/tienda?discount=true' },
   ];
 
   if (user?.role === 'admin') {

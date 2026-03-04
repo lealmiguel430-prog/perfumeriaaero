@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import ProductCard from '../common/ProductCard';
 import { useProductStore } from '@/store/productStore';
 
@@ -24,7 +25,9 @@ const FeaturedProducts = () => {
         </div>
         
         <div className="mt-16 text-center">
-          <button className="btn-outline">Ver Toda la Colección</button>
+          <Link to="/tienda" className="btn-outline inline-block px-8 py-3 border border-white text-white hover:bg-white hover:text-black transition-all uppercase tracking-widest text-sm font-medium">
+            VER CATÁLOGO
+          </Link>
         </div>
       </div>
     </section>
