@@ -28,7 +28,6 @@ const Header = () => {
 
   const navLinks = [
     { name: 'INICIO', path: '/' },
-    { name: 'NUEVOS LANZAMIENTOS', path: '/mujer?type=nicho' }, // Mapping to something relevant
     { 
       name: 'FAMILIAS OLFATIVAS', 
       path: '#',
